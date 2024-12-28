@@ -527,7 +527,7 @@ void Prover::genBatchProof(ProverRequest *pProverRequest)
         json recursive2Verkey;
         file2json(config.recursive2Verkey, recursive2Verkey);
 
-#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
+#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE) && defined(GPU_STEP)
         Goldilocks::Element *publics = (Goldilocks::Element *)malloc_zkevm(starksRecursive1->starkInfo.nPublics);
 #else
         Goldilocks::Element publics[starksRecursive1->starkInfo.nPublics];
@@ -608,7 +608,7 @@ void Prover::genBatchProof(ProverRequest *pProverRequest)
         /*  Generate stark proof            */
         /*************************************/
 
-#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
+#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE) && defined(GPU_STEP)
         CHelpersStepsGPU cHelpersSteps;
 #elif defined(__AVX512__)
         CHelpersStepsAvx512 cHelpersSteps;
@@ -739,7 +739,7 @@ void Prover::genBatchProof(ProverRequest *pProverRequest)
             json2file(jProofRecursive1, pProverRequest->filePrefix + "batch_proof.proof.json");
         }
 
-#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
+#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE) && defined(GPU_STEP)
         free_zkevm(publics);
 #endif
         TimerStopAndLog(SAVE_PROOF);
@@ -860,7 +860,7 @@ void Prover::genAggregatedProof(ProverRequest *pProverRequest)
     FRIProof fproofRecursive2((1 << polBitsRecursive2), FIELD_EXTENSION, starksRecursive2->starkInfo.starkStruct.steps.size(), starksRecursive2->starkInfo.evMap.size(), starksRecursive2->starkInfo.nPublics);
     
     if(USE_GENERIC_PARSER) {
-#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
+#if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE) && defined(GPU_STEP)
         CHelpersStepsGPU cHelpersSteps;
 #elif defined(__AVX512__)
         CHelpersStepsAvx512 cHelpersSteps;
@@ -969,7 +969,7 @@ void Prover::genFinalProof(ProverRequest *pProverRequest)
     uint64_t polBitsRecursiveF = starksRecursiveF->starkInfo.starkStruct.steps[starksRecursiveF->starkInfo.starkStruct.steps.size() - 1].nBits;
     FRIProofC12 fproofRecursiveF((1 << polBitsRecursiveF), FIELD_EXTENSION, starksRecursiveF->starkInfo.starkStruct.steps.size(), starksRecursiveF->starkInfo.evMap.size(), starksRecursiveF->starkInfo.nPublics);
     if(USE_GENERIC_PARSER) {
-        #if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
+        #if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE) && defined(GPU_STEP)
             CHelpersStepsGPU cHelpersSteps;
         #elif defined(__AVX512__)
             CHelpersStepsAvx512 cHelpersSteps;
