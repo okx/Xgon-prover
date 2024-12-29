@@ -217,6 +217,8 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
             nBlocksStage1_++;
         }
 
+        printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage1_.first, nttOffsetHelperStage1_.second, nBlocksStage1_);
+
         ntt.extendPol(p_cm1_2ns, p_cm1_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm1_n], pBuffHelperStage1_, 3, nBlocksStage1_);
         TimerStopAndLog(STARK_STEP_1_RECALCULATING_LDE);
 
@@ -230,6 +232,8 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
         while((nttOffsetHelperStage2_.second * nBlocksStage2_ < buffHelperElementsStage2_) || (starkInfo.mapSectionsN.section[cm2_n] > 256*nBlocksStage2_) ) {
             nBlocksStage2_++;
         }
+
+        printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage2_.first, nttOffsetHelperStage2_.second, nBlocksStage2_);
 
         ntt.extendPol(p_cm2_2ns, p_cm2_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm2_n], pBuffHelperStage2_, 3, nBlocksStage2_);
         TimerStopAndLog(STARK_STEP_2_RECALCULATING_LDE);
