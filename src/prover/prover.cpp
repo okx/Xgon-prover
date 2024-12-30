@@ -150,7 +150,10 @@ Prover::Prover(Goldilocks &fr,
                 zklog.info("Prover::Prover() successfully allocated " + to_string(polsSize) + " bytes");
             }
 
-            uint64_t offset = _starkInfo.mapNTTOffsetsHelpers["cm1_tmp"].first;
+            std::pair<uint64_t, uint64_t> stage1 = _starkInfo.mapNTTOffsetsHelpers["cm1_tmp"];
+            uint64_t offset = stage1.first;
+            uint64_t available = stage1.second;
+            printf("offset:%lu, available:%lu\n", offset, available);
             uint64_t *mem = (uint64_t *)pAddress;
             set_pinned_mem(&mem[offset]);
 
