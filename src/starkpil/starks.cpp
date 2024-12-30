@@ -65,7 +65,7 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
 
     printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage1.first, nttOffsetHelperStage1.second, nBlocksStage1);
 
-    ntt.extendPol(reduceMemory?p_cm1_2ns_tmp:p_cm1_2ns, p_cm1_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm1_n], pBuffHelperStage1, 3, nBlocksStage1);
+    ntt.extendPol(reduceMemory?p_cm1_2ns_tmp:p_cm1_2ns, p_cm1_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm1_n], pBuffHelperStage1, 3, nBlocksStage1, nttOffsetHelperStage1.second);
     TimerStopAndLog(STARK_STEP_1_LDE);
 
     TimerStart(STARK_STEP_1_MERKLETREE);
@@ -139,7 +139,7 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
 
     printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage2.first, nttOffsetHelperStage2.second, nBlocksStage2);
 
-    ntt.extendPol(reduceMemory?p_cm2_2ns_tmp:p_cm2_2ns, p_cm2_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm2_n], pBuffHelperStage2, 3, nBlocksStage2);
+    ntt.extendPol(reduceMemory?p_cm2_2ns_tmp:p_cm2_2ns, p_cm2_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm2_n], pBuffHelperStage2, 3, nBlocksStage2, nttOffsetHelperStage2.second);
     TimerStopAndLog(STARK_STEP_2_LDE);
 
     TimerStart(STARK_STEP_2_MERKLETREE);
@@ -192,7 +192,7 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
 
     printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage3.first, nttOffsetHelperStage3.second, nBlocksStage3);
 
-    ntt.extendPol(p_cm3_2ns, p_cm3_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm3_n], pBuffHelperStage3, 3, nBlocksStage3);
+    ntt.extendPol(p_cm3_2ns, p_cm3_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm3_n], pBuffHelperStage3, 3, nBlocksStage3, nttOffsetHelperStage3.second);
     TimerStopAndLog(STARK_STEP_3_LDE);
 
     TimerStart(STARK_STEP_3_MERKLETREE);
@@ -219,7 +219,7 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
 
         printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage1_.first, nttOffsetHelperStage1_.second, nBlocksStage1_);
 
-        ntt.extendPol(p_cm1_2ns, p_cm1_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm1_n], pBuffHelperStage1_, 3, nBlocksStage1_);
+        ntt.extendPol(p_cm1_2ns, p_cm1_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm1_n], pBuffHelperStage1_, 3, nBlocksStage1_, nttOffsetHelperStage1_.second);
         TimerStopAndLog(STARK_STEP_1_RECALCULATING_LDE);
 
         TimerStart(STARK_STEP_2_RECALCULATING_LDE);

@@ -123,7 +123,7 @@ Prover::Prover(Goldilocks &fr,
 
 #if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
             warmup_gpu();
-            alloc_pinned_mem_per_device((uint64_t(1) << _starkInfo.starkStruct.nBitsExt) * 32);
+            //alloc_pinned_mem_per_device((uint64_t(1) << _starkInfo.starkStruct.nBitsExt) * 32);
 #endif
 
             // Allocate an area of memory, mapped to file, to store all the committed polynomials,
@@ -149,6 +149,9 @@ Prover::Prover(Goldilocks &fr,
                 }
                 zklog.info("Prover::Prover() successfully allocated " + to_string(polsSize) + " bytes");
             }
+
+            uint64_t offset = _starkInfo.mapNTTOffsetsHelpers[nttHelperStage1].first;
+
             
             json finalVerkeyJson;
             file2json(config.finalVerkey, finalVerkeyJson);
@@ -203,7 +206,7 @@ Prover::~Prover()
             free_zkevm(pAddress);
         }
 #if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
-        free_pinned_mem();
+        //free_pinned_mem();
 #endif
 
         delete starkZkevm;
