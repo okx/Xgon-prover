@@ -151,7 +151,8 @@ Prover::Prover(Goldilocks &fr,
             }
 
             uint64_t offset = _starkInfo.mapNTTOffsetsHelpers["cm1_tmp"].first;
-            set_pinned_mem(&pAddress[offset]);
+            uint64_t *mem = (uint64_t *)pAddress;
+            set_pinned_mem(&mem[offset]);
 
             json finalVerkeyJson;
             file2json(config.finalVerkey, finalVerkeyJson);
