@@ -59,7 +59,7 @@ StarkRecursiveF::StarkRecursiveF(const Config &config, void *_pAddress) : config
             exitProcess();
         }
         TimerStart(EXTEND_CONST_POLS);
-        ntt.extendPol((Goldilocks::Element *)pConstPolsAddress2ns, (Goldilocks::Element *)pConstPolsAddress, NExtended, N, starkInfo.nConstants);
+        ntt.extendPol_CPU((Goldilocks::Element *)pConstPolsAddress2ns, (Goldilocks::Element *)pConstPolsAddress, NExtended, N, starkInfo.nConstants);
         TimerStopAndLog(EXTEND_CONST_POLS);
         TimerStart(MERKELIZE_CONST_TREE);
         treesBN128[4] = new MerkleTreeBN128(starkInfo.merkleTreeArity, NExtended, starkInfo.nConstants, (Goldilocks::Element *)pConstPolsAddress2ns);
