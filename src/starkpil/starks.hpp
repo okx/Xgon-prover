@@ -88,9 +88,9 @@ public:
                                                                            NExtended(config.generateProof() ? 1 << starkInfo.starkStruct.nBitsExt : 0),
                                                                            ntt(config.generateProof() ? 1 << starkInfo.starkStruct.nBits : 0),
                                                                            nttExtended(config.generateProof() ? 1 << starkInfo.starkStruct.nBitsExt : 0),
-                                                                           x_n(config.generateProof() ? N : 0, config.generateProof() ? 1 : 0, true),
-                                                                           x_2ns(config.generateProof() ? NExtended : 0, config.generateProof() ? 1 : 0, true),
-                                                                           zi(config.generateProof() ? NExtended : 0, config.generateProof() ? 1 : 0, true),
+                                                                           x_n(config.generateProof() ? N : 0, config.generateProof() ? 1 : 0),
+                                                                           x_2ns(config.generateProof() ? NExtended : 0, config.generateProof() ? 1 : 0),
+                                                                           zi(config.generateProof() ? NExtended : 0, config.generateProof() ? 1 : 0),
                                                                            pAddress(_pAddress),
                                                                            x(config.generateProof() ? N << (starkInfo.starkStruct.nBitsExt - starkInfo.starkStruct.nBits) : 0, config.generateProof() ? FIELD_EXTENSION : 0)
     {
