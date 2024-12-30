@@ -150,9 +150,9 @@ Prover::Prover(Goldilocks &fr,
                 zklog.info("Prover::Prover() successfully allocated " + to_string(polsSize) + " bytes");
             }
 
-            uint64_t offset = _starkInfo.mapNTTOffsetsHelpers[nttHelperStage1].first;
+            uint64_t offset = _starkInfo.mapNTTOffsetsHelpers["cm1_tmp"].first;
+            set_pinned_mem(&pAddress[offset]);
 
-            
             json finalVerkeyJson;
             file2json(config.finalVerkey, finalVerkeyJson);
             domainSizeFflonk = 1 << uint64_t(finalVerkeyJson["power"]);
