@@ -141,14 +141,15 @@ public:
             TimerStart(EXTEND_CONST_POLS);
             uint64_t nBlocks = 8;
             uint64_t bufferSize = ((2 * NExtended * starkInfo.nConstants) * sizeof(Goldilocks::Element) / nBlocks);
-            Goldilocks::Element* nttHelper = (Goldilocks::Element *)malloc(bufferSize);
+            printf("NExtended:%lu, bufferSize:%lu\n", NExtended, bufferSize);
+            Goldilocks::Element* nttHelper = (Goldilocks::Element *)malloc_zkevm(NExtended * 8 * 8 * sizeof(Goldilocks::Element));
             if(nttHelper == NULL)
             {
                 zklog.error("Starks::Starks() failed to allocate nttHelper");
                 exitProcess();
             }
             ntt.extendPol((Goldilocks::Element *)pConstPolsAddress2ns, (Goldilocks::Element *)pConstPolsAddress, NExtended, N, starkInfo.nConstants, nttHelper, 3, nBlocks);
-            free(nttHelper);
+            free_zkevm(nttHelper);
             TimerStopAndLog(EXTEND_CONST_POLS);
             TimerStart(MERKELIZE_CONST_TREE);
             treesGL[4] = new MerkleTreeGL(NExtended, starkInfo.nConstants, (Goldilocks::Element *)pConstPolsAddress2ns);
