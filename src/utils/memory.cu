@@ -4,8 +4,8 @@
 void *calloc_zkevm(uint64_t count, uint64_t size) {
     char *a;
     uint64_t total = count*size;
-    //cudaHostAlloc(&a, total, cudaHostAllocPortable);
-    cudaMallocManaged(&a, total);
+    cudaHostAlloc(&a, total, cudaHostAllocPortable);
+    //cudaMallocManaged(&a, total);
     uint64_t segment = 1<<20;
     if (total > segment) {
         uint64_t nPieces = (total + segment - 1) / segment;
@@ -22,8 +22,8 @@ void *calloc_zkevm(uint64_t count, uint64_t size) {
 
 void *malloc_zkevm(uint64_t size) {
     char *a;
-    //cudaHostAlloc(&a, size, cudaHostAllocPortable);
-    cudaMallocManaged(&a, size);
+    cudaHostAlloc(&a, size, cudaHostAllocPortable);
+    //cudaMallocManaged(&a, size);
     return a;
 }
 
