@@ -155,7 +155,7 @@ Prover::Prover(Goldilocks &fr,
             uint64_t available = stage1.second;
             printf("offset:%lu, available:%lu\n", offset, available);
             uint64_t *mem = (uint64_t *)pAddress;
-            set_pinned_mem(&mem[offset]);
+            //set_pinned_mem(&mem[offset]);
 
             json finalVerkeyJson;
             file2json(config.finalVerkey, finalVerkeyJson);
