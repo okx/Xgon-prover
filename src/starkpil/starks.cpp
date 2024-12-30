@@ -235,7 +235,7 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
 
         printf("start: %lu, available: %lu, nStage:%lu\n", nttOffsetHelperStage2_.first, nttOffsetHelperStage2_.second, nBlocksStage2_);
 
-        ntt.extendPol(p_cm2_2ns, p_cm2_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm2_n], NULL, 3, nBlocksStage2_);
+        ntt.extendPol_CPU(p_cm2_2ns, p_cm2_n, NExtended, N, starkInfo.mapSectionsN.section[eSection::cm2_n], NULL, 3, nBlocksStage2_);
         TimerStopAndLog(STARK_STEP_2_RECALCULATING_LDE);
 
         treesGL[0]->setSource(p_cm1_2ns);
