@@ -148,7 +148,7 @@ public:
 //                zklog.error("Starks::Starks() failed to allocate nttHelper");
 //                exitProcess();
 //            }
-            ntt.extendPol_CPU((Goldilocks::Element *)pConstPolsAddress2ns, (Goldilocks::Element *)pConstPolsAddress, NExtended, N, starkInfo.nConstants);
+            ntt.extendPol((Goldilocks::Element *)pConstPolsAddress2ns, (Goldilocks::Element *)pConstPolsAddress, NExtended, N, starkInfo.nConstants);
             //free_zkevm(nttHelper);
             TimerStopAndLog(EXTEND_CONST_POLS);
             TimerStart(MERKELIZE_CONST_TREE);
