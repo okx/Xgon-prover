@@ -224,7 +224,7 @@ void Starks::genProof(FRIProof &proof, Goldilocks::Element *publicInputs, Goldil
 
         TimerStart(STARK_STEP_2_RECALCULATING_LDE);
         std::pair<uint64_t, uint64_t> nttOffsetHelperStage2_ = starkInfo.mapNTTOffsetsHelpers["cm2"];
-        Goldilocks::Element *pBuffHelperStage2_ = &params.pols[nttOffsetHelperStage2_.first];
+        //Goldilocks::Element *pBuffHelperStage2_ = &params.pols[nttOffsetHelperStage2_.first];
 
         uint64_t buffHelperElementsStage2_ = NExtended * starkInfo.mapSectionsN.section[cm2_n];
 
