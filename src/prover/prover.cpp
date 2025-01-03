@@ -73,12 +73,12 @@ void warmup_gpu()
 }
 #endif
 
-void printPolsSections(const PolsSections& sections) {
-    printf("Sections by index:\n");
-    for (int i = 0; i < eSectionMax; i++) {
-        printf("section[%d] = %llu\n", i, sections.section[i]);
-    }
-}
+//void printPolsSections(const PolsSections& sections) {
+//    printf("Sections by index:\n");
+//    for (int i = 0; i < eSectionMax; i++) {
+//        printf("section[%d] = %llu\n", i, sections.section[i]);
+//    }
+//}
 
 Prover::Prover(Goldilocks &fr,
                PoseidonGoldilocks &poseidon,
@@ -117,9 +117,9 @@ Prover::Prover(Goldilocks &fr,
             
             StarkInfo _starkInfo(config.zkevmStarkInfo, reduceMemoryZkevm);
 
-            printPolsSections(_starkInfo.mapSectionsN);
-            printPolsSections(_starkInfo.mapOffsets);
-            printf("mapTotalN: %llu\n", _starkInfo.mapTotalN);
+//            printPolsSections(_starkInfo.mapSectionsN);
+//            printPolsSections(_starkInfo.mapOffsets);
+//            printf("mapTotalN: %llu\n", _starkInfo.mapTotalN);
 
 #if defined(__USE_CUDA__) && defined(ENABLE_EXPERIMENTAL_CODE)
             warmup_gpu();
