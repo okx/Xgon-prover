@@ -7,9 +7,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update -y && \
     libbenchmark-dev nasm nlohmann-json3-dev libsecp256k1-dev libomp-dev \
     libpqxx-dev git libssl-dev cmake libgrpc++-dev libprotobuf-dev grpc-proto \
     libsodium-dev protobuf-compiler protobuf-compiler-grpc uuid-dev wget && \
-    DEBIAN_FRONTEND=noninteractive apt install nvidia-driver-535 && \
-    DEBIAN_FRONTEND=noninteractive wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb && \
-    dpkg -i cuda-keyring_1.1-1_all.deb && \
+    DEBIAN_FRONTEND=noninteractive apt install -y nvidia-driver-535
+RUN DEBIAN_FRONTEND=noninteractive wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+RUN dpkg -i cuda-keyring_1.1-1_all.deb && \
     DEBIAN_FRONTEND=noninteractive apt-get update -y && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install cuda-toolkit-12-3 && \
     rm -fr /var/cache/apt/*
